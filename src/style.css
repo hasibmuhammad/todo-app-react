@@ -1,0 +1,82 @@
+body {
+  background-color: aliceblue;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.text-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid coral;
+  outline: none;
+}
+
+.btn-submit {
+  padding: 0.8rem 2rem;
+  background-color: coral;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.btn-submit:hover,
+.btn-delete:hover {
+  background-color: black;
+  color: #fff;
+  cursor: pointer;
+}
+
+.todo-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.btn-delete {
+  padding: 0.5rem 1rem;
+  background-color: orangered;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+.todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
