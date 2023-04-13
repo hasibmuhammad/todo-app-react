@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./style.css";
 import Form from "./Form";
 import TodoItem from "./TodoItem";
+import Footer from "./Footer";
 
 export default function App() {
   const [todos, setTodos] = useState(() => {
@@ -52,6 +53,7 @@ export default function App() {
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
         />
+        <Footer />
       </div>
     </>
   );
