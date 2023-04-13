@@ -38,6 +38,7 @@ form {
   margin-top: 10px;
   font-weight: bolder;
   text-transform: uppercase;
+  color: #fff;
 }
 
 .btn-submit:hover,
@@ -66,6 +67,7 @@ ul {
   background-color: orangered;
   border: none;
   border-radius: 5px;
+  color: #fff;
 }
 
 input[type="checkbox"] {

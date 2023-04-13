@@ -1,44 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
+import Form from "./Form";
+import TodoItem from "./TodoItem";
 
 export default function App() {
+  const [todos, setTodos] = useState(() => {
+    const fromLocalStorage = localStorage.getItem("TODOS");
+    if (fromLocalStorage == null) return [];
+
+    return JSON.parse(fromLocalStorage);
+  });
+
+  useEffect(() => {
+    localStorage.setItem("TODOS", JSON.stringify(todos));
+  }, [todos]);
+
+  // Adding Todo to existing todos object
+  const addTodo = (title) => {
+    if (title == "") return;
+    setTodos((currentSate) => {
+      return [...currentSate, { id: crypto.randomUUID(), title, state: false }];
+    });
+  };
+
+  // Check uncheck the todo
+  const toggleTodo = (id, state) => {
+    setTodos((currentTodos) => {
+      return currentTodos.map((cTodo) => {
+        if (cTodo.id === id) {
+          return { ...cTodo, state };
+        }
+        return cTodo;
+      });
+    });
+  };
+
+  // Delete todo
+  const deleteTodo = (id) => {
+    setTodos((currentTodos) => {
+      return currentTodos.filter((todo) => todo.id !== id);
+    });
+  };
+
   return (
     <>
       <div className="container">
-        <div className="form">
-          <form>
-            <input
-              className="text-input"
-              type="text"
-              placeholder="Enter text..."
-            />
-            <button className="btn-submit" type="submit">
-              Add To Do
-            </button>
-          </form>
-        </div>
-
-        <div className="todo-container">
-          <h1>Your Todos</h1>
-          <ul className="todos">
-            <li className="todo">
-              <input type="checkbox" name="" id="" />
-              <span>Todo 1</span>
-              <button className="btn-delete">Delete</button>
-            </li>
-            <li className="todo">
-              <input type="checkbox" name="" id="" />
-              <span>Todo 2</span>
-              <button className="btn-delete">Delete</button>
-            </li>
-            <li className="todo">
-              <input type="checkbox" name="" id="" />
-              <span>Todo 3</span>
-              <button className="btn-delete">Delete</button>
-            </li>
-          </ul>
-        </div>
+        <Form addTodo={addTodo} />
+        <TodoItem
+          todos={todos}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+        />
       </div>
     </>
   );
